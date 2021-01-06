@@ -4,9 +4,13 @@ const Dinosaur = require('../models/dinosaur.js');
 
 describe('Park', function() {
   let park;
-  let dinosaur;
+  let triceratops;
+  let velociraptor;
+  let spinosaurus;
   beforeEach(function () {
-    dinosaur = new Dinosaur('Triceratops', 'herbivorous', 62);
+    triceratops = new Dinosaur('Triceratops', 'herbivorous', 62);
+    velociraptor = new Dinosaur('Velociraptor', 'scavenger', 73);
+    spinosaurus = new Dinosaur('Spinosaurus', 'carnivore', 57);
     park = new Park('Mesozoic', 12);
   })
 
@@ -25,11 +29,26 @@ describe('Park', function() {
     assert.deepStrictEqual(actual, []);
   });
 
-  it('should be able to add a dinosaur to its collection');
+  it('should be able to add a dinosaur to its collection', function(){
+    park.addDinosaur(triceratops);
+    const expected = [triceratops];
+    assert.deepStrictEqual(park.dinosaurCollection, expected);
+  });
 
-  it('should be able to remove a dinosaur from its collection');
+  it('should be able to remove a dinosaur from its collection', function(){
+    park.addDinosaur(triceratops);
+    park.removeDinosaur(triceratops);
+    const expected = [];
+    assert.deepStrictEqual(park.dinosaurCollection, expected);
+  });
 
-  it('should be able to find the dinosaur that attracts the most visitors');
+  it('should be able to find the dinosaur that attracts the most visitors', function(){
+    park.addDinosaur(triceratops);
+    park.addDinosaur(velociraptor);
+    park.addDinosaur(spinosaurus);
+    const expected = 73;
+    assert.strictEqual(park.mostAttractiveDinosaur(), expected);
+  });
 
   it('should be able to find all dinosaurs of a particular species');
 
