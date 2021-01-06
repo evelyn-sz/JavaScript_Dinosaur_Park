@@ -50,7 +50,13 @@ describe('Park', function() {
     assert.strictEqual(park.mostAttractiveDinosaur(), expected);
   });
 
-  it('should be able to find all dinosaurs of a particular species');
+  it('should be able to find all dinosaurs of a particular species', function(){
+    park.addDinosaur(triceratops);
+    park.addDinosaur(velociraptor);
+    // park.addDinosaur(spinosaurus);
+    const expected = (velociraptor);
+    assert.strictEqual(park.findDinosaur(velociraptor), expected)
+  });
 
   it('should be able to calculate the total number of visitors per day');
 

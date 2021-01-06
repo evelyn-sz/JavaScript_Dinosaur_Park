@@ -25,4 +25,13 @@ Park.prototype.mostAttractiveDinosaur = function(){
     const index = attractiveArray.indexOf(max);
     return attractiveArray[index];
 }
+
+Park.prototype.findDinosaur = function(searchedSpecies){
+    for (let dinosaur of this.dinosaurCollection){
+        if (dinosaur.species === searchedSpecies){
+            return dinosaur;
+        } 
+    }
+}
+
 module.exports = Park;
